@@ -14,3 +14,18 @@
 |   Instance   |  |   Instance  |  |   Instance  |
 +--------------+  +-------------+  +-------------+
 
+ To make the infrastructure scalable and fault-tolerant, we're using the following components and approaches:
+
+Auto Scaling Group (ASG): The ASG automatically adjusts the number of EC2 instances based on demand. This ensures that the application can handle varying traffic loads without manual intervention.
+
+Application Load Balancer (ALB): The ALB distributes incoming traffic across multiple instances, ensuring that no single instance becomes overwhelmed. This load balancing improves the application's availability and responsiveness.
+
+Multi-AZ Deployment: By deploying instances across multiple Availability Zones (AZs), the infrastructure remains available even if one AZ experiences issues. The ASG is configured to span instances across different AZs.
+
+Example Illustration:
+
+Suppose the microservices application experiences a sudden surge in user traffic due to a product launch. The Auto Scaling Group (ASG) detects the increased load and automatically provisions additional EC2 instances to handle the traffic influx. As traffic decreases after the launch frenzy, the ASG scales down the instances to optimize cost and resource utilization.
+
+If one Availability Zone experiences a network outage, the application remains operational because the Application Load Balancer (ALB) redirects traffic to instances located in other Availability Zones.
+
+In summary, this setup provides scalability through automatic resource adjustments and fault tolerance by distributing resources across multiple Availability Zones, mitigating the impact of failures.
