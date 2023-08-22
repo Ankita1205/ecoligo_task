@@ -5,15 +5,13 @@ provider "aws" {
 resource "aws_security_group" "services_sg" {
   name = "services-sg"
 
-  // Define your security group rules here
-}
+ }
 
 resource "aws_launch_configuration" "service_lc" {
   name_prefix   = "service-lc"
   image_id      = "template_name"  # Replace with your desired AMI ID
   instance_type = "t2.micro"      # Replace with your desired instance type
 
-  // Other configuration settings
 }
 
 resource "aws_autoscaling_group" "service_asg" {
@@ -22,8 +20,6 @@ resource "aws_autoscaling_group" "service_asg" {
   min_size             = 2
   max_size             = 5
   desired_capacity     = 2
-
-  // Other auto scaling settings
 }
 
 resource "aws_lb" "app_lb" {
