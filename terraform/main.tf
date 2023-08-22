@@ -10,7 +10,7 @@ resource "aws_security_group" "services_sg" {
 
 resource "aws_launch_configuration" "service_lc" {
   name_prefix   = "service-lc"
-  image_id      = "ami-12345678"  # Replace with your desired AMI ID
+  image_id      = "template_name"  # Replace with your desired AMI ID
   instance_type = "t2.micro"      # Replace with your desired instance type
 
   // Other configuration settings
@@ -32,7 +32,7 @@ resource "aws_lb" "app_lb" {
   load_balancer_type = "application"
   enable_deletion_protection = false  # Disable this in production
 
-  subnets = ["subnet-12345678", "subnet-87654321"]  # Replace with your subnet IDs
+  subnets = ["subnet1", "subnet2"]  # Replace with your subnet IDs
 
   enable_http2      = true
   enable_cross_zone_load_balancing = true
@@ -55,7 +55,7 @@ resource "aws_lb_target_group" "app_tg" {
   port        = 80
   protocol    = "HTTP"
   target_type = "instance"
-  vpc_id      = "vpc-12345678"  # Replace with your VPC ID
+  vpc_id      = "vpc-a"  # Replace with your VPC ID
 
   health_check {
     enabled = true
